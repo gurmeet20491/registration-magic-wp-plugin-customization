@@ -21,5 +21,14 @@
 
     }
 
+    // Set the Global variable Custom role to be used anywhere //
+    function set_status_variable() {
+        global $custom_role;
+        if (is_user_logged_in()) {
+            $current_user_id = get_current_user_id();
+            $custom_role = get_custom_role($current_user_id);
+        }
+    }
+    add_action('wp_head', 'set_status_variable');
 
 ?>
