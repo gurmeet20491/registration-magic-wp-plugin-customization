@@ -31,4 +31,12 @@
     }
     add_action('wp_head', 'set_status_variable');
 
+    // Managing the content of Event submiison page based on custom role //
+
+    function event_submission_page_content(){
+        global $custom_role;
+        echo $custom_role === "Doctor" || current_user_can( 'manage_options' ) ? do_shortcode('[em_event_submit_form]') : "You are not eligible to access this page";
+    }
+    add_shortcode('event_submit_form_according_to_role_IWD','event_submission_page_content');
+
 ?>
